@@ -31,5 +31,5 @@ CREATE TABLE next_pages
 (
 	page_id bigint NOT NULL,
 	next_page_id bigint NOT NULL,
-	CONSTRAINT fk_page FOREIGN KEY (page_id) REFERENCES flow(id)
+	CONSTRAINT fk_page FOREIGN KEY (page_id) REFERENCES page(id)
 );
