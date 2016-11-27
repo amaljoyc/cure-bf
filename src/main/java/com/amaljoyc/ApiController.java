@@ -16,8 +16,8 @@ public class ApiController {
 	private CureBfService service;
 	
 	@RequestMapping(path="/json", method = RequestMethod.GET)
-	public List<ApiResponse> returnJson() {
-		return service.buildResponseList();
+	public ApiResponse returnJson() {
+		return service.buildApiResponse();
 	}
 
 }

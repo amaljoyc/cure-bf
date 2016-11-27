@@ -13,6 +13,7 @@ import com.amaljoyc.repos.BlockRepo;
 import com.amaljoyc.repos.FlowRepo;
 import com.amaljoyc.repos.PageRepo;
 
+import dto.BlockDto;
 import dto.FlowDto;
 import dto.PageDto;
 
@@ -28,33 +29,37 @@ public class CureBfService {
 	@Autowired
 	private PageRepo pageRepo;
 	
-	public List<ApiResponse> buildResponseList() {
-		List<ApiResponse> responseList = new ArrayList();
+	public ApiResponse buildApiResponse() {
+		ApiResponse apiResponse = new ApiResponse();
+		List<BlockDto> blockDtos = new ArrayList();
+		
 		List<Block> blocks = blockRepo.findAll();
 		for (Block block : blocks) {
-			ApiResponse response = new ApiResponse();
+			BlockDto blockDto = new BlockDto();
 			String blockName = block.getName();
-			response.setBlock(blockName);
+			blockDto.setName(blockName);
 			List<Flow> flows = block.getFlows();
 			
 			if(flows.size() == 1) {
-				response.setFlow(formatFlow(flows.get(0)));
+				blockDto.setFlow(formatFlow(flows.get(0)));
 			} else {
 				for(Flow flow : flows) {
 					String flowName = flow.getName();
 					if(blockName.equals("DOC") && flowName.equals("MIXED")) {
-						response.setFlow(formatFlow(flow));
+						blockDto.setFlow(formatFlow(flow));
 						break;
 					} else if(blockName.equals("IDENT") && flowName.equals("OFF_ONLY")) {
-						response.setFlow(formatFlow(flow));
+						blockDto.setFlow(formatFlow(flow));
 						break;
 					}
 				}
 			}
-			
-			responseList.add(response);
+
+			blockDtos.add(blockDto);
 		}
-		return responseList;
+
+		apiResponse.setBlocks(blockDtos);
+		return apiResponse;
 	}
 	
 	private FlowDto formatFlow(Flow flow) {
