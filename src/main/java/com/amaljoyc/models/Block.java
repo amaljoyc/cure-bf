@@ -1,15 +1,7 @@
 package com.amaljoyc.models;
 
+import javax.persistence.*;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "block")
@@ -22,7 +14,10 @@ public class Block {
 	
 	@Column(name = "name")
 	private String name;
-	
+
+	@Column(name = "sort_order")
+	private Integer sortOrder;
+
 	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="block")
     private List<Flow> flows;
 
@@ -40,6 +35,14 @@ public class Block {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
 	}
 
 	public List<Flow> getFlows() {

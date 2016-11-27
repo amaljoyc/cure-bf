@@ -1,18 +1,18 @@
-INSERT INTO block (id, name) VALUES (1, 'DOC');
-INSERT INTO block (id, name) VALUES (2, 'IDENT');
-INSERT INTO block (id, name) VALUES (3, 'SIGN');
-INSERT INTO block (id, name) VALUES (4, 'PAY');
+INSERT INTO block (id, name, sort_order) VALUES (1, 'DOC', 1);
+INSERT INTO block (id, name, sort_order) VALUES (2, 'IDENT', 2);
+INSERT INTO block (id, name, sort_order) VALUES (3, 'SIGN', 3);
+INSERT INTO block (id, name, sort_order) VALUES (4, 'PAY', 4);
 
 
-INSERT INTO flow (id, name, first_page_id, block_id) VALUES (1, 'OFF_ONLY', 1, 1);
-INSERT INTO flow (id, name, first_page_id, block_id) VALUES (2, 'MIXED', 4, 1);
+INSERT INTO flow (id, name, type, first_page_id, block_id) VALUES (1, 'doc_off_only', 'OFF_ONLY', 1, 1);
+INSERT INTO flow (id, name, type, first_page_id, block_id) VALUES (2, 'doc_mixed', 'MIXED', 4, 1);
 
-INSERT INTO flow (id, name, first_page_id, block_id) VALUES (3, 'OFF_ONLY', 11, 2);
-INSERT INTO flow (id, name, first_page_id, block_id) VALUES (4, 'MIXED', 15, 2);
+INSERT INTO flow (id, name, type, first_page_id, block_id) VALUES (3, 'ident_off_only', 'OFF_ONLY', 11, 2);
+INSERT INTO flow (id, name, type, first_page_id, block_id) VALUES (4, 'ident_mixed', 'MIXED', 15, 2);
 
-INSERT INTO flow (id, name, first_page_id, block_id) VALUES (5, 'OFF_ONLY', 23, 3);
+INSERT INTO flow (id, name, type, first_page_id, block_id) VALUES (5, 'sign_off_only', 'OFF_ONLY', 23, 3);
 
-INSERT INTO flow (id, name, first_page_id, block_id) VALUES (6, 'OFF_ONLY', 30, 4);
+INSERT INTO flow (id, name, type, first_page_id, block_id) VALUES (6, 'pay_off_only', 'OFF_ONLY', 30, 4);
 
 
 INSERT INTO page (id, name, state, view, previous_page_id, flow_id) 

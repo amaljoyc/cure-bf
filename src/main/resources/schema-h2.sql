@@ -2,6 +2,7 @@ CREATE TABLE block
 (
     id bigint NOT NULL,
     name varchar(255),
+    sort_order integer,
     CONSTRAINT pk_block PRIMARY KEY (id)
 );
 
@@ -9,6 +10,7 @@ CREATE TABLE flow
 (
     id bigint NOT NULL,
     name varchar(255),
+    type varchar(255),
     first_page_id bigint,
     block_id bigint,
     CONSTRAINT pk_flow PRIMARY KEY (id),

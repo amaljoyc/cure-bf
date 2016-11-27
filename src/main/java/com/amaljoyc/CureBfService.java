@@ -38,17 +38,18 @@ public class CureBfService {
 			BlockDto blockDto = new BlockDto();
 			String blockName = block.getName();
 			blockDto.setName(blockName);
+			blockDto.setSortOrder(block.getSortOrder());
 			List<Flow> flows = block.getFlows();
 			
 			if(flows.size() == 1) {
 				blockDto.setFlow(formatFlow(flows.get(0)));
 			} else {
 				for(Flow flow : flows) {
-					String flowName = flow.getName();
-					if(blockName.equals("DOC") && flowName.equals("MIXED")) {
+					String flowType = flow.getType();
+					if(blockName.equals("DOC") && flowType.equals("MIXED")) {
 						blockDto.setFlow(formatFlow(flow));
 						break;
-					} else if(blockName.equals("IDENT") && flowName.equals("OFF_ONLY")) {
+					} else if(blockName.equals("IDENT") && flowType.equals("OFF_ONLY")) {
 						blockDto.setFlow(formatFlow(flow));
 						break;
 					}
@@ -65,6 +66,7 @@ public class CureBfService {
 	private FlowDto formatFlow(Flow flow) {
 		FlowDto flowDto = new FlowDto();
 		flowDto.setName(flow.getName());
+		flowDto.setType(flow.getType());
 		flowDto.setFirstPageId(flow.getFirstPageId());
 		flowDto.setPages(formatPages(flow.getPages()));
 		return flowDto;
