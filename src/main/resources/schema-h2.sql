@@ -31,5 +31,6 @@ CREATE TABLE next_pages
 (
 	page_id bigint NOT NULL,
 	next_page_id bigint NOT NULL,
-	CONSTRAINT fk_page FOREIGN KEY (page_id) REFERENCES page(id)
+	CONSTRAINT fk_page FOREIGN KEY (page_id) REFERENCES page(id),
+	CONSTRAINT fk_next_page FOREIGN KEY (next_page_id) REFERENCES page(id)
 );

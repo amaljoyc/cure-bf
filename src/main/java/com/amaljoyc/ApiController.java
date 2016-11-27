@@ -1,6 +1,6 @@
 package com.amaljoyc;
 
-import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
+	
+	@Autowired
+	private CureBfService service;
+	
+	@RequestMapping(path="/json", method = RequestMethod.GET)
+	public List<ApiResponse> returnJson() {
+		return service.buildResponseList();
+	}
 
 }
 

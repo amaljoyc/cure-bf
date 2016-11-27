@@ -20,13 +20,13 @@ public class Flow {
 	@Id
 	@GeneratedValue
 	@Column(name = "id", nullable = false)
-	private long id;
+	private Long id;
 	
 	@Column(name = "name")
 	private String name;
 
 	@Column(name = "first_page_id")
-	private long firstPageId;
+	private Long firstPageId;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="block_id")
@@ -35,11 +35,11 @@ public class Flow {
 	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="flow")
     private List<Page> pages;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -51,11 +51,11 @@ public class Flow {
 		this.name = name;
 	}
 
-	public long getFirstPageId() {
+	public Long getFirstPageId() {
 		return firstPageId;
 	}
 
-	public void setFirstPageId(long firstPageId) {
+	public void setFirstPageId(Long firstPageId) {
 		this.firstPageId = firstPageId;
 	}
 

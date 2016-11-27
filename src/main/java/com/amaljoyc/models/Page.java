@@ -22,7 +22,7 @@ public class Page {
 	@Id
 	@GeneratedValue
 	@Column(name = "id", nullable = false)
-	private long id;
+	private Long id;
 	
 	@Column(name = "name")
 	private String name;
@@ -34,21 +34,23 @@ public class Page {
 	private String view;
 
 	@Column(name = "previous_page_id")
-	private long previousPageId;
+	private Long previousPageId;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="flow_id")
     private Flow flow;
 	
 	@ManyToMany
-    @JoinTable(name="next_pages")
+	@JoinTable(name = "next_pages",
+    joinColumns = @JoinColumn(name = "page_id"),
+    inverseJoinColumns = @JoinColumn(name = "next_page_id"))
 	private List<Page> nextPages;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -76,11 +78,11 @@ public class Page {
 		this.view = view;
 	}
 
-	public long getPreviousPageId() {
+	public Long getPreviousPageId() {
 		return previousPageId;
 	}
 
-	public void setPreviousPageId(long previousPageId) {
+	public void setPreviousPageId(Long previousPageId) {
 		this.previousPageId = previousPageId;
 	}
 
